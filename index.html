@@ -7,7 +7,6 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black"> -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.4/dist/leaflet.css" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet.locatecontrol@0.63.0/dist/L.Control.Locate.min.css" />
     <link rel="shortcut icon" type="image/png" href="img/icon.png" />
     <title>Pokemon Go Map</title>
 <script type="text/javascript">/******/ (function(modules) { // webpackBootstrap
@@ -97,6 +96,25 @@
 /******/ })
 /************************************************************************/
 /******/ ({
+
+/***/ "./node_modules/css-loader/index.js?!./node_modules/less-loader/dist/cjs.js!./src/locatecontrol.less":
+/*!***********************************************************************************************************!*\
+  !*** ./node_modules/css-loader??ref--5-1!./node_modules/less-loader/dist/cjs.js!./src/locatecontrol.less ***!
+  \***********************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(/*! ../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, ".leaflet-control-locate a {\n  font-size: 1.4em;\n  color: #444;\n  cursor: pointer;\n}\n.leaflet-control-locate a span.fa {\n  line-height: 30px;\n}\n.leaflet-control-locate.active a {\n  color: #2074b6;\n}\n.leaflet-control-locate.active.following a {\n  color: #fc8428;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
 
 /***/ "./node_modules/css-loader/index.js?!./node_modules/less-loader/dist/cjs.js!./src/main.less":
 /*!**************************************************************************************************!*\
@@ -14885,6 +14903,36 @@ class S2Grid {
 
 /***/ }),
 
+/***/ "./src/locatecontrol.less":
+/*!********************************!*\
+  !*** ./src/locatecontrol.less ***!
+  \********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(/*! !../node_modules/css-loader??ref--5-1!../node_modules/less-loader/dist/cjs.js!./locatecontrol.less */ "./node_modules/css-loader/index.js?!./node_modules/less-loader/dist/cjs.js!./src/locatecontrol.less");
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(/*! ../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {}
+
+/***/ }),
+
 /***/ "./src/main.less":
 /*!***********************!*\
   !*** ./src/main.less ***!
@@ -14931,8 +14979,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _S2Grid__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./S2Grid */ "./src/S2Grid.ts");
 /* harmony import */ var leaflet_locatecontrol__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! leaflet.locatecontrol */ "./node_modules/leaflet.locatecontrol/src/L.Control.Locate.js");
 /* harmony import */ var leaflet_locatecontrol__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(leaflet_locatecontrol__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _locatecontrol_less__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./locatecontrol.less */ "./src/locatecontrol.less");
+/* harmony import */ var _locatecontrol_less__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_locatecontrol_less__WEBPACK_IMPORTED_MODULE_4__);
 
  // import { LocationMarker } from "./LocationMarker";
+
 
 
 
@@ -14947,7 +14998,13 @@ window.onload = () => {
   map.addLayer(osmLayer);
   map.setView([0, 0], 3); // new LocationMarker(map);
 
-  leaflet__WEBPACK_IMPORTED_MODULE_0___default.a.control.locate().addTo(map);
+  leaflet__WEBPACK_IMPORTED_MODULE_0___default.a.control.locate({
+    drawCircle: false,
+    locateOptions: {
+      watch: true,
+      enableHighAccuracy: true
+    }
+  }).addTo(map);
   new _S2Grid__WEBPACK_IMPORTED_MODULE_2__["S2Grid"](map);
 };
 
