@@ -14840,12 +14840,10 @@ const buildPolygon = cell => {
   // from the other cell, or be off screen so we don't care
 
   return new leaflet__WEBPACK_IMPORTED_MODULE_0___default.a.Polygon([corners[0], corners[1], corners[2], corners[3], corners[0]], {
-    fill: true,
-    fillColor: "red",
-    fillOpacity: 0.5,
-    color: "red",
-    opacity: 1,
-    weight: 3
+    fill: false,
+    color: "rgb(0, 156, 203)",
+    opacity: 0.5,
+    weight: 2
   });
 };
 
@@ -14993,10 +14991,9 @@ window.onload = () => {
   mapDiv.id = _main_less__WEBPACK_IMPORTED_MODULE_1___default.a.map;
   document.body.appendChild(mapDiv);
   console.log(_main_less__WEBPACK_IMPORTED_MODULE_1___default.a.map);
-  const map = leaflet__WEBPACK_IMPORTED_MODULE_0___default.a.map(_main_less__WEBPACK_IMPORTED_MODULE_1___default.a.map).fitWorld();
+  const map = leaflet__WEBPACK_IMPORTED_MODULE_0___default.a.map(_main_less__WEBPACK_IMPORTED_MODULE_1___default.a.map).setView([0, 0], 3);
   const osmLayer = new leaflet__WEBPACK_IMPORTED_MODULE_0___default.a.TileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png");
-  map.addLayer(osmLayer);
-  map.setView([0, 0], 3); // new LocationMarker(map);
+  map.addLayer(osmLayer); // new LocationMarker(map);
 
   leaflet__WEBPACK_IMPORTED_MODULE_0___default.a.control.locate({
     drawCircle: false,
@@ -15005,6 +15002,9 @@ window.onload = () => {
       enableHighAccuracy: true
     }
   }).addTo(map);
+  map.locate({
+    setView: true
+  });
   new _S2Grid__WEBPACK_IMPORTED_MODULE_2__["S2Grid"](map);
 };
 
